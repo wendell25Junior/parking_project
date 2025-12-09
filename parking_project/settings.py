@@ -51,6 +51,9 @@ WSGI_APPLICATION = 'parking_project.wsgi.application'
 
 
 DATABASES = {
+    DATABASES['default'] = dj_database_url.config(
+    default='sqlite:///db.sqlite3')
+
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / "db.sqlite3",
