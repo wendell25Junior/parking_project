@@ -2,10 +2,10 @@ from django.core.management.base import BaseCommand
 from parking.models import Floor, Sector, ParkingSpot
 
 class Command(BaseCommand):
-    help = "Cria andares, setores e vagas automaticamente"
+    help = 
 
     def handle(self, *args, **kwargs):
-        self.stdout.write("Criando andares, setores e vagas...")
+        self.stdout.write()
 
         floors = ["Térreo", "1º Andar", "2º Andar"]
         sectors = ["A", "B", "C"]
@@ -19,7 +19,7 @@ class Command(BaseCommand):
                     name=sector_name
                 )
 
-                # Criar 10 vagas por setor
+                
                 for i in range(1, 11):
                     code = f"{sector_name}{i}"
                     ParkingSpot.objects.get_or_create(
