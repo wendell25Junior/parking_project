@@ -48,7 +48,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'parking_project.wsgi.application'
 
-# BANCO DE DADOS SEM dj_database_url
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
