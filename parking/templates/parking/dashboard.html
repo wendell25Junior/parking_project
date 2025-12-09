@@ -1,0 +1,18 @@
+{% extends 'parking/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Andares</h2>
+
+<div>
+    {% for floor in floors %}
+        <a class="btn-floor" href="{% url 'parking:floor_detail' floor.name %}">
+            {{ floor.name }}
+        </a>
+    {% empty %}
+        <p>Nenhum andar cadastrado.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

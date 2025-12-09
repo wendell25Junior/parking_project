@@ -1,0 +1,55 @@
+{% extends 'parking/base.html' %}
+{% block title %}Andar {{ floor.name }}{% endblock %}
+{% block content %}
+<a href="{% url 'parking:dashboard' %}">&larr; Voltar</a>
+
+<h2>Andar {{ floor.name }}</h2>
+
+<div class="stats">
+    <div>Total: <strong>{{ total }}</strong></div>
+    <div>Ocupadas: <strong>{{ ocupadas }}</strong></div>
+    <div>Disponíveis: <strong>{{ livres }}</strong></div>
+</div>
+
+<h3>Vagas disponíveis (IDs)</h3>
+<ul>
+{% for s in spots %}
+    {% if not s.is_occupied %}
+        <li>{{ s.spot_id }}</li>
+    {% endif %}
+{% empty %}
+    <li>Sem vagas disponíveis</li>
+{% endfor %}
+</ul>
+
+<h3>Mapa (vagas disponíveis)</h3>
+<div id="map"></div>
+
+<script>
+const spotsGeo = {{ spots_geo|safe }};
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const mapDiv = document.getElementById('map');
+
+if (typeof spotsGeo !== 'undefined' && spotsGeo.length > 0) {
+
+    const map = L.map('map').setView([spotsGeo[0].lat, spotsGeo[0].lng], 19);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 22,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    spotsGeo.forEach(s => {
+        L.marker([s.lat, s.lng]).addTo(map).bindPopup(`Vaga: ${s.spot_id}`);
+    });
+
+} else {
+    mapDiv.innerHTML = '<p>Nenhuma vaga com coordenadas para exibir no mapa.</p>';
+    mapDiv.style.height = 'auto';
+}
+</script>
+{% endblock %}

@@ -1,0 +1,22 @@
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+
+
+services:
+  - type: web
+    name: parking-system
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn parking_project.wsgi"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: parking_project.settings
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: false

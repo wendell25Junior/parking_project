@@ -1,0 +1,60 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+
+# Virtualenv
+venv/
+env/
+ENV/
+
+# VSCode
+.vscode/
+
+# Python
+*.py[cod]
+*$py.class
+
+# Backup
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+
+# Compiled
+*.so
+
+# Pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Byte-compiled / optimized / DLL files
+*.pyo
+*.pyd
+*.dll
+*.dylib
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+
+*.egg-info/
+.installed.cfg
+*.egg
