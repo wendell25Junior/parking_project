@@ -12,7 +12,7 @@ def dashboard(request):
 def floor_detail(request, name):
     floor = get_object_or_404(Floor, name=name)
 
-    # Todas as vagas do andar (via setor)
+    
     spots = ParkingSpot.objects.filter(sector__floor=floor)
 
     context = {
